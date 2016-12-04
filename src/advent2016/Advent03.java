@@ -31,8 +31,7 @@ public class Advent03 extends AdventChallenge {
                     list.add(Integer.parseInt(m.group(i)));
                 }
 
-                List<List<Integer>> arclist = new ArrayList<>();
-                arclist = perm(list, arclist);
+                List<List<Integer>> arclist = perm(list);
                 boolean isValidTriangle = true;
                 for (List<Integer> l : arclist) {
                     if (l.size() == 3) {
@@ -74,8 +73,7 @@ public class Advent03 extends AdventChallenge {
                 }
 
                 for (List<Integer> list_s : list) {
-                    List<List<Integer>> arclist = new ArrayList<>();
-                    arclist = perm(list_s, arclist);
+                    List<List<Integer>> arclist = perm(list_s);
                     boolean isValidTriangle = true;
                     for (List<Integer> l : arclist) {
                         if (l.size() == 3) {
@@ -101,7 +99,7 @@ public class Advent03 extends AdventChallenge {
         return b.toString();
     }
 
-    private List<List<Integer>> perm(List<Integer> list, List<List<Integer>> arclist) {
+    private List<List<Integer>> perm(List<Integer> list) {
         if (list.size() == 1) {
             List<List<Integer>> r = new ArrayList<>();
             r.add(list);
@@ -111,7 +109,7 @@ public class Advent03 extends AdventChallenge {
         for (int i = 0; i < list.size(); i++) {
             List<Integer> reducedList = new ArrayList<>(list);
             reducedList.remove(i);
-            List<List<Integer>> iterList = perm(reducedList, arclist);
+            List<List<Integer>> iterList = perm(reducedList);
 
             int x = list.get(i);
             for (List<Integer> iterList_s : iterList) {
