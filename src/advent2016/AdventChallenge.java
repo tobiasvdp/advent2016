@@ -20,7 +20,9 @@ import java.util.logging.Logger;
  */
 public abstract class AdventChallenge {
 
-    abstract String getInputFilename();
+    String getInputFilename(){
+        return this.getClass().getSimpleName()+ ".txt";
+    }
 
     List<String> getInput() {
         String filename = "advent2016/" + getInputFilename();
