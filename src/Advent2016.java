@@ -5,6 +5,7 @@ import advent2016.Advent03;
 import advent2016.Advent04;
 import advent2016.Advent05;
 import advent2016.Advent06;
+import advent2016.Advent09;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,8 +36,8 @@ public class Advent2016 {
             Logger.getGlobal().setLevel(Level.OFF);
         }
 
-        Advent06 adv06 = new Advent06();
-        adv06.getResult();
+        Advent09 adv09 = new Advent09();
+        adv09.getResult();
     }
 
 }
