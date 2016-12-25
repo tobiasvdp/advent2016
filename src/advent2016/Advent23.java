@@ -5,11 +5,12 @@
  */
 package advent2016;
 
-import advent2016.advent12.Cpy;
-import advent2016.advent12.Dec;
-import advent2016.advent12.Inc;
-import advent2016.advent12.Instruction;
-import advent2016.advent12.Jnz;
+import advent2016.advent23.Cpy;
+import advent2016.advent23.Dec;
+import advent2016.advent23.Inc;
+import advent2016.advent23.Instruction;
+import advent2016.advent23.Jnz;
+import advent2016.advent23.Tgl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,17 +23,18 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * @author Tobias
  */
-public class Advent12 extends AdventChallenge {
+public class Advent23 extends AdventChallenge {
 
     Pattern cpy = Pattern.compile("cpy (.*) (.*)");
     Pattern inc = Pattern.compile("inc (.*)");
     Pattern dec = Pattern.compile("dec (.*)");
     Pattern jnz = Pattern.compile("jnz (.*) (.*)");
     Pattern tgl = Pattern.compile("tgl (.*)");
+    public static List<Instruction> instrutions;
 
     @Override
     Object getResult(List<String> input) {
-        List<Instruction> instrutions = new ArrayList<>();
+        instrutions = new ArrayList<>();
         for (String input_s : input) {
             Matcher m = cpy.matcher(input_s);
             if (m.matches()) {
@@ -109,7 +111,7 @@ public class Advent12 extends AdventChallenge {
                                 } catch (NumberFormatException e) {
 
                                 }
-                                
+                                instrutions.add(new Tgl(s1, null, i1, 0));
                             } else {
                                 throw new NotImplementedException();
                             }
@@ -120,13 +122,12 @@ public class Advent12 extends AdventChallenge {
         }
         int counter = 0;
         Map<String, Integer> registers = new HashMap<>();
-        //p2
-        registers.put("c", 1);
+        registers.put("a", 12);
         while (counter < instrutions.size()) {
             counter = instrutions.get(counter).doInstruction(counter, registers);
         }
-
-        return null;
+        
+        return registers.get("a");
     }
 
 }
