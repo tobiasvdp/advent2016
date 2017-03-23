@@ -86,11 +86,32 @@ public class Advent21 extends AdventChallenge {
                 position = i;
             }
         }
+
         if (position != -1) {
-            rotateLeft(1, arr);
-            rotateLeft(position, arr);
-            if (position >= 4) {
-                rotateLeft(1, arr);
+            switch (position) {
+                case 0:
+                    rotateLeft(1, arr);
+                    break;
+                case 1:
+                    rotateLeft(1, arr);
+                    break;
+                case 2:
+                    rotateRight(2, arr);
+                    break;
+                case 3:
+                    rotateLeft(2, arr);
+                    break;
+                case 4:
+                    rotateRight(1, arr);
+                    break;
+                case 5:
+                    rotateLeft(3, arr);
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    rotateLeft(4, arr);
+                    break;
             }
         }
     }
@@ -156,10 +177,9 @@ public class Advent21 extends AdventChallenge {
         }
         System.out.println("p1 " + new String(arr));
 
-        /*
         //p2
         //answer = "fbgdceah";
-        answer = "decab";
+        answer = "fbgdceah";
         arr = answer.toCharArray();
         Collections.reverse(input);
         for (String input_s : input) {
@@ -182,49 +202,6 @@ public class Advent21 extends AdventChallenge {
                 move(Integer.parseInt(m.group(2)), Integer.parseInt(m.group(1)), arr);
             }
             System.out.println(new String(arr));
-        }*/
-        answer = "aaaaaaaa";
-        while (!answer.equals("zzzzzzzz")) {
-            arr = answer.toCharArray();
-
-            for (String input_s : input) {
-                Matcher m = rotateLR.matcher(input_s);
-                if (m.matches()) {
-                    if (m.group(1).equals("left")) {
-                        rotateLeft(Integer.parseInt(m.group(2)), arr);
-                    } else {
-                        rotateRight(Integer.parseInt(m.group(2)), arr);
-                    }
-                } else if ((m = rotateChar.matcher(input_s)).matches()) {
-                    rotateByChar(m.group(1).charAt(0), arr);
-                } else if ((m = swapChar.matcher(input_s)).matches()) {
-                    swap(m.group(1).charAt(0), m.group(2).charAt(0), arr);
-                } else if ((m = swapInt.matcher(input_s)).matches()) {
-                    swap(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)), arr);
-                } else if ((m = reverse.matcher(input_s)).matches()) {
-                    reverse(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)), arr);
-                } else if ((m = move.matcher(input_s)).matches()) {
-                    move(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)), arr);
-                }
-                //System.out.println(new String(arr));
-            }
-            //System.out.println(answer + " gives " + new String(arr));
-            if ((new String(arr)).equals("abcdefgh")) {
-                return answer;
-            }
-            arr = answer.toCharArray();
-            int i = arr.length-1;
-            boolean changed = false;
-            while(!changed){
-                if(arr[i] != 'z'){
-                    arr[i] += 1;
-                    changed=true;
-                }else{
-                    arr[i] = 'a';
-                    i--;
-                }
-            }
-            answer = new String(arr);
         }
         return new String(arr);
     }

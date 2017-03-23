@@ -6,6 +6,7 @@
 package advent2016.advent23;
 
 import advent2016.advent12.*;
+import advent2016.advent25.Out;
 import java.util.Map;
 
 /**
@@ -14,8 +15,8 @@ import java.util.Map;
  */
 public abstract class Instruction {
 
-    String s1, s2;
-    int i1, i2;
+    public String s1, s2;
+    public int i1, i2;
 
     public Instruction(String s1, String s2, int i1, int i2) {
         this.s1 = s1;
@@ -30,7 +31,7 @@ public abstract class Instruction {
         if (this instanceof Inc) {
             Instruction dec = new Dec(s1, s2, i1, i2);
             advent2016.Advent23.instrutions.set(i, dec);
-        } else if (this instanceof Dec) {
+        } else if (this instanceof Dec || this instanceof Out) {
             Instruction inc = new Inc(s1, s2, i1, i2);
             advent2016.Advent23.instrutions.set(i, inc);
         } else if (this instanceof Tgl) {
